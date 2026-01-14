@@ -13,6 +13,14 @@ hosts:
       man_user: debian
     flavor: standard.small
     hidden: True
+   
+  - name: image-test
+    base_box: 
+      image: windows-10
+      mgmt_user: windows
+      mng_protocol: winrm
+    flavor: standard.medium
+
 
   - name: client
     base_box:
