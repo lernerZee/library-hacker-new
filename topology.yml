@@ -7,13 +7,7 @@ hosts:
       image: kali
       mgmt_user: debian
     flavor: standard.small
-
-  - name: windows-host
-    base_box:
-      image: Windows-Server-2022
-      man_user: Administrator
-    flavor: standard.small
-
+    
   - name: client
     base_box:
       image: debian-12-x86_64
