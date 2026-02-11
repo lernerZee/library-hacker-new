@@ -1,59 +1,29 @@
-name: web-to-db-pivot-lab
+name: windows-linux-basic-lab
 
 hosts:
-  - name: attacker
+  - name: windows-host
     base_box:
-      image: kali
-      man_user: debian
+      image: Windows-Server-2022
+      man_user: Administrator
     flavor: standard.small
 
-  - name: web-server
+  - name: linux-host
     base_box:
-      image: ubuntu-noble-x86_64
+      image: ubuntu-24-noble-server
       man_user: ubuntu
     flavor: standard.small
 
-  - name: db-server
-    base_box:
-      image: debian-12-x86_64
-      man_user: debian
-    flavor: standard.small
-    hidden: True
-
-routers:
-  - name: router
-    base_box:
-      image: debian-12-x86_64
-      man_user: debian
-    flavor: standard.small
-
 networks:
-  - name: public-net
+  - name: lab-net
     cidr: 10.10.10.0/24
 
-  - name: internal-net
-    cidr: 10.20.20.0/24
-    accessible_by_user: False
-
 net_mappings:
-  - host: attacker
-    network: public-net
-    ip: 10.10.10.5
-
-  - host: web-server
-    network: public-net
+  - host: windows-host
+    network: lab-net
     ip: 10.10.10.10
 
-  - host: db-server
-    network: internal-net
-    ip: 10.20.20.15
-
-router_mappings:
-  - router: router
-    network: public-net
-    ip: 10.10.10.1
-  - router: router
-    network: internal-net
-    ip: 10.20.20.1
+  - host: linux-host
+    network: lab-net
+    ip: 10.10.10.20
 
 groups: []
